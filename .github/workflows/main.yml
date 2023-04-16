@@ -19,6 +19,9 @@ on:
         # Parameter that requires input to run the workflow
         required: true
 
+#           export HASH=${{ github.event.inputs.hash }}
+#           export RPC=${{ github.event.inputs.rpc }}
+
 # A workflow run jobs
 jobs:
   # Job to replay a transaction
@@ -33,14 +36,10 @@ jobs:
         run: |
            npm install
            npm run postinstall
-        # Define environment variables here
+      - name: Running the script
+      # Define environment variables here
         env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
-      - name: Running the script
         run: |
-           echo ${{ github.event.inputs.rpc }} ${{ github.event.inputs.hash }}
-           export HASH=${{ github.event.inputs.hash }}
-           export RPC=${{ github.event.inputs.rpc }}
-           echo $HASH $RPC
            npx hardhat run scripts/replayTransaction.ts
