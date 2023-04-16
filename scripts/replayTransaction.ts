@@ -4,6 +4,10 @@ import { Artifact } from "hardhat/src/types/artifacts";
 import { Provider } from "@ethersproject/providers";
 import { ErrorDescription } from "@ethersproject/abi/src.ts/interface";
 import { Result } from "@ethersproject/abi";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 
 // Script input parameters
 const txHash: string = process.env.HASH || "";

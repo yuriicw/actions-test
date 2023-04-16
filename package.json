@@ -5,6 +5,7 @@
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.11.10",
     "chai": "^4.3.7",
+    "dotenv": "^16.0.3",
     "hardhat": "^2.12.3",
     "patch-package": "^6.5.0",
     "ts-node": "^10.9.1",
