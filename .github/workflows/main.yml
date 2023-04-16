@@ -12,12 +12,14 @@ on:
         description: "A hash to replay"
         # Parameter that requires input to run the workflow
         required: true
+        default: "test"
       # The RPC of the network
       rpc:
         # UI description
         description: "RPC url of the network"
         # Parameter that requires input to run the workflow
         required: true
+        default: "test2"
 
 # A workflow run jobs
 jobs:
@@ -35,9 +37,10 @@ jobs:
            npm run postinstall
         # Define environment variables here
         env:
-          HASH: ${{ inputs.hash }}
-          RPC: ${{ inputs.rpc }}
+          HASH: ${{ github.event.inputs.hash }}
+          RPC: ${{ github.event.inputs.rpc }}
       - name: Running the script
         run: |
            echo $HASH $RPC
+           echo ${{ github.event.inputs.rpc }} ${{ github.event.inputs.hash }}
            npx hardhat run scripts/replayTransaction.ts
