@@ -1,0 +1,51 @@
+# A workflow to replay transactions
+name: replay-transaction
+
+# Controls when the action will run. In this case runs when manually triggered from UI
+on:
+  workflow_dispatch:
+    # Inputs that workflow accepts
+    inputs:
+      # The hash of the transaction
+      hash:
+        # UI description
+        description: "A hash to replay"
+        # Parameter that requires input to run the workflow
+        required: true
+      # The RPC of the network
+      rpc:
+        # UI description
+        description: "RPC url of the network"
+        # Parameter that requires input to run the workflow
+        required: true
+
+# A workflow run jobs
+jobs:
+  # Job to replay a transaction
+  replay-transaction:
+    # The OS of runner
+    runs-on: ubuntu-latest
+    # The version of node.js
+    container: node:18
+    # Tasks that are executed in the job
+    steps:
+      - name: Setting up the dependencies
+      # Check the version of node.js
+        run: node --version
+      # Check the version of packet manager
+        run: npm --version
+      # Use actions checkout
+        uses: actions/checkout@v3
+      # Install all dependencies
+        run: npm install
+      # Patch the package
+        run: npm run postinstall
+
+      - name: Running the script
+        env:
+          HASH: ${{ github.event.inputs.hash }}
+          RPC: ${{ github.event.inputs.rpc }}
+        # Compile the contracts to get artifacts
+        run: npx hardhat compile
+        # Run replaying script
+        run: npx hardhat run scripts/replayTransaction.ts
