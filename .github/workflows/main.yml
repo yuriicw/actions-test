@@ -40,4 +40,4 @@ jobs:
       - name: Running the script
         run: |
            npx hardhat compile
-           npx hardhat run scripts/replayTransaction.ts
+           npx hardhat run scripts/replayTransaction.ts > output.txt
