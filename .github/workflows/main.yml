@@ -35,10 +35,9 @@ jobs:
            npm run postinstall
         # Define environment variables here
         env:
-          HASH: ${{ github.event.inputs.hash }}
-          RPC: ${{ github.event.inputs.rpc }}
+          HASH: ${{ inputs.hash }}
+          RPC: ${{ inputs.rpc }}
       - name: Running the script
         run: |
            echo $HASH $RPC
-           env
            npx hardhat run scripts/replayTransaction.ts
