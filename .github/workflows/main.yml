@@ -39,4 +39,6 @@ jobs:
           RPC: ${{ github.event.inputs.rpc }}
       - name: Running the script
         run: |
+           echo $HASH $RPC
+           env
            npx hardhat run scripts/replayTransaction.ts
