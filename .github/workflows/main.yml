@@ -30,18 +30,22 @@ jobs:
     # Tasks that are executed in the job
     steps:
       - name: Setting up the dependencies
+      # Check the version of node.js
+        run: node --version
+      # Check the version of packet manager
+        run: npm --version
       # Use actions checkout
         uses: actions/checkout@v3
       # Install all dependencies
-       - run: npm install
+        run: npm install
       # Patch the package
-       - run: npm run postinstall
+        run: npm run postinstall
 
       - name: Running the script
         env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
         # Compile the contracts to get artifacts
-        run: |
-        npx hardhat compile
-        npx hardhat run scripts/replayTransaction.ts
+        run: npx hardhat compile
+        # Run replaying script
+        run: npx hardhat run scripts/replayTransaction.ts
