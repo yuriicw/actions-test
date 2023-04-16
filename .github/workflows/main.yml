@@ -25,13 +25,14 @@ jobs:
   replay-transaction:
     # The OS of runner
     runs-on: ubuntu-latest
+    container: node:18
     # Tasks that are executed in the job
     steps:
       - name: Setting up the dependencies
       # Use actions checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       # Check the version of node.js
-        run: |
+      - run: |
              node --version
       # Check the version of packet manager
              npm --version
@@ -41,11 +42,11 @@ jobs:
              npm run postinstall
 
       - name: Running the script
-        env:
+        - env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
         # Compile the contracts to get artifacts
-        run: |
+        - run: |
              npx hardhat compile
         # Run replaying script
              npx hardhat run scripts/replayTransaction.ts
