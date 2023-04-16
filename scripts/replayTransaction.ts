@@ -10,8 +10,8 @@ dotenv.config();
 
 
 // Script input parameters
-const txHash: string = process.env.HASH || "";
-const rpcUrl: string = process.env.RPC || "";
+const txHash: string = process.env.HASH || "0x05d7855d90c464f49867ddb28137e211cc0e5b9cafc9a2130d14ab6c1bf24ac3";
+const rpcUrl: string = process.env.RPC || "https://rpc.mainnet.cloudwalk.io";
 
 // Script parameters
 const textLevelIndent = "  ";
