@@ -28,16 +28,16 @@ jobs:
     container: node:18
     # Tasks that are executed in the job
     steps:
-      - name: Setting up the dependencies
-      # Use actions checkout
       - uses: actions/checkout@v3
-      - run: |
-             npm install
-             npm run postinstall
-      - name: Running the script
       - env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
-      - run: |
+      - name: Setting up the dependencies
+      # Use actions checkout
+        run: |
+             npm install
+             npm run postinstall
+      - name: Running the script
+        run: |
              npx hardhat compile
              npx hardhat run scripts/replayTransaction.ts
