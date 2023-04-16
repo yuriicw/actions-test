@@ -37,9 +37,9 @@ jobs:
              npm install
              npm run postinstall
       - name: Running the script
-        - env:
+      - env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
-        - run: |
+      - run: |
              npx hardhat compile
              npx hardhat run scripts/replayTransaction.ts
