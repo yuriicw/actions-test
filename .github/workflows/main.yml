@@ -29,15 +29,15 @@ jobs:
     # Tasks that are executed in the job
     steps:
       - uses: actions/checkout@v3
-      - env:
+      - name: Setting up the dependencies
+        run: |
+           npm install
+           npm run postinstall
+      - name: Set environment variables
+        env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
-      - name: Setting up the dependencies
-      # Use actions checkout
-        run: |
-             npm install
-             npm run postinstall
       - name: Running the script
         run: |
-             npx hardhat compile
-             npx hardhat run scripts/replayTransaction.ts
+           npx hardhat compile
+           npx hardhat run scripts/replayTransaction.ts
