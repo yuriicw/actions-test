@@ -195,4 +195,6 @@ async function main() {
   }
 }
 
+console.log("STARTED")
 main();
+console.log("FINISHED")
