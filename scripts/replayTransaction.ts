@@ -6,8 +6,8 @@ import { ErrorDescription } from "@ethersproject/abi/src.ts/interface";
 import { Result } from "@ethersproject/abi";
 
 // Script input parameters
-const txHash: string = process.env.SP_TX_HASH || "";
-const rpcUrl: string = process.env.SP_RPC_URL || "";
+const txHash: string = process.env.HASH || "";
+const rpcUrl: string = process.env.RPC || "";
 
 // Script parameters
 const textLevelIndent = "  ";
