@@ -196,5 +196,7 @@ async function main() {
 }
 
 console.log("STARTED")
+console.log(rpcUrl)
+console.log(txHash)
 main();
 console.log("FINISHED")
