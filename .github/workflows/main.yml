@@ -25,8 +25,6 @@ jobs:
   replay-transaction:
     # The OS of runner
     runs-on: ubuntu-latest
-    # The version of node.js
-    container: node:18
     # Tasks that are executed in the job
     steps:
       - name: Setting up the dependencies
