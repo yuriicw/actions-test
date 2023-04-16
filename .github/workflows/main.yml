@@ -25,7 +25,7 @@ jobs:
   replay-transaction:
     # The OS of runner
     runs-on: ubuntu-latest
-    container: node:18
+    container: node:16
     # Tasks that are executed in the job
     steps:
       - uses: actions/checkout@v3
