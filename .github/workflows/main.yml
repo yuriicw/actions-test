@@ -36,7 +36,6 @@ jobs:
              npm --version
              npm install
              npm run postinstall
-
       - name: Running the script
         - env:
           HASH: ${{ github.event.inputs.hash }}
