@@ -31,22 +31,16 @@ jobs:
       - name: Setting up the dependencies
       # Use actions checkout
       - uses: actions/checkout@v3
-      # Check the version of node.js
       - run: |
              node --version
-      # Check the version of packet manager
              npm --version
-      # Install all dependencies
              npm install
-      # Patch the package
              npm run postinstall
 
       - name: Running the script
         - env:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
-        # Compile the contracts to get artifacts
         - run: |
              npx hardhat compile
-        # Run replaying script
              npx hardhat run scripts/replayTransaction.ts
