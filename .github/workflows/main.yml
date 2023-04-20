@@ -42,4 +42,6 @@ jobs:
           HASH: ${{ github.event.inputs.hash }}
           RPC: ${{ github.event.inputs.rpc }}
         run: |
+           export HASH=${{ github.event.inputs.hash }}
+           export RPC=${{ github.event.inputs.rpc }}
            npx hardhat run scripts/replayTransaction.ts
